@@ -30,12 +30,15 @@ const MoneyBook = () => {
 	
 	return (
 			<div>
-			<h1>小遣い帳</h1>
+			<Title>こづかい帳</Title>
 			<table className="book">
 			<thead>
 			<tr><th>日付</th><th>項目</th><th>入金</th><th>出金</th></tr>
 			</thead>
 			<tbody>
+			{books.map((book)=><MoneyBookItem book={book} key={book.date + book.item} />)}
+				
+		
 			<MoneyBookItem book={books[0]} />
 			<MoneyBookItem book={books[1]} />
 			<MoneyBookItem book={books[2]} />
@@ -46,6 +49,13 @@ const MoneyBook = () => {
 	)
 }
 
+const Title = (props) => {
+	return (<h1>{props.children}</h1>)
+}
+
+Title.propTypes = {
+	children: PropTypes.string
+}
 
 ReactDOM.render(
 		<MoneyBook />,
